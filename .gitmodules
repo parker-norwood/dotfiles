@@ -1,6 +1,7 @@
 [submodule "submodules/dotbot"]
 	path = submodules/dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
 [submodule "submodules/nerd-fonts"]
 	path = submodules/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts
@@ -13,3 +14,4 @@
 [submodule "submodules/antigen"]
 	path = submodules/antigen
 	url = https://github.com/zsh-users/antigen
+
