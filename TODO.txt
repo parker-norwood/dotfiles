@@ -1,4 +1,3 @@
 Add kitty as alternative using update-alternatives
 Set kitty as primary terminal
-Add comments to commands in install.conf.yaml shell section
 Add shell commands to update submodules

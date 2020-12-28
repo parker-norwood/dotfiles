@@ -18,11 +18,11 @@
     ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
     ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
 - shell:
-  - cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano
-  - cp -v .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions
-  - cp -v submodules/antigen/antigen.zsh ~/.antigen
-  - submodules/nerd-fonts/install.sh FiraCode
-  - scripts/install_packages.sh
-  - busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
-  - chsh -s $(which zsh)
-  - kitty --detach zsh -c "neofetch; zsh -i"
+  - [cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano, Install fixed desktop-icons gnome-shell extension]
+  - [cp -v .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions, Install open-terminal nautilus-python extension]
+  - [cp -v submodules/antigen/antigen.zsh ~/.antigen, Install antigen.zsh]
+  - [submodules/nerd-fonts/install.sh FiraCode, Install FiraCode Nerd Fonts]
+  - [scripts/install_packages.sh, Run script installing additional packages]
+  - [busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")', Restart GNOME Shell]
+  - [chsh -s $(which zsh), Making zsh the default shell]
+  - [kitty --detach zsh -c "neofetch; zsh -i", Launch kitty terminal emulator with neofetch splash]
