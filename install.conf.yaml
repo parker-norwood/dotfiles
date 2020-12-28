@@ -1,0 +1,28 @@
+- defaults:
+    link:
+      force: true
+      create: true
+      relink: true
+- clean:
+    ~/:
+    ~/.config:
+      recursive: true
+- create:
+  - ~/.antigen
+  - ~/.vim/pack/themes/start
+  - ~/.local/share/nautilus-python/extensions
+- link:
+    ~/.zshrc: .dotfiles/.zshrc
+    ~/.p10k.zsh: .dotfiles/.p10k.zsh
+    ~/.config/kitty/kitty.conf: .dotfiles/kitty/kitty.conf
+    ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
+    ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
+- shell:
+  - cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano
+  - cp -v .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions
+  - cp -v submodules/antigen/antigen.zsh ~/.antigen
+  - submodules/nerd-fonts/install.sh FiraCode
+  - scripts/install_packages.sh
+  - busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")'
+  - chsh -s $(which zsh)
+  - kitty --detach zsh -c "neofetch; zsh -i"
