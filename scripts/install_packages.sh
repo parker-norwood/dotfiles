@@ -21,6 +21,7 @@ apt_packages=(
   python3-pip # python package installer
   vim # Vi IMproved - enhanced vi editor
   vim-airline # Lean & mean status/tabline for vim that's light as air
+  zsh # shell with lots of features
   # net-tools # deprecated, use iproute2 utilities (ip/ss commands) instead
   # dnsutils # deprecated, use dig instead
 )

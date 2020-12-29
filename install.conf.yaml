@@ -33,7 +33,10 @@
     description: Run script installing additional packages
     stdin: true
     stdout: true
-  - [scripts/install_packages.sh, Run script installing additional packages]
   - [busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")', Restart GNOME Shell]
-  - [chsh -s $(which zsh), Making zsh the default shell]
+  -
+    command: chsh -s $(which zsh)
+    description: Making zsh the default shell
+    stdin: true
+    stdout: true
   - [kitty --detach zsh -c "neofetch; zsh -i", Launch kitty terminal emulator with neofetch splash]
