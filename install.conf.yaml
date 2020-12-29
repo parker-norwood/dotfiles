@@ -3,6 +3,8 @@
       force: true
       create: true
       relink: true
+    shell:
+      stderr: true
 - clean:
     ~/:
     ~/.config:
@@ -18,10 +20,19 @@
     ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
     ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
 - shell:
-  - [cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano, Install fixed desktop-icons gnome-shell extension]
+  -
+    command: sudo cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano
+    description: Install fixed desktop-icons gnome-shell extension
+    stdin: true
+    stdout: true
   - [cp -v .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions, Install open-terminal nautilus-python extension]
   - [cp -v submodules/antigen/antigen.zsh ~/.antigen, Install antigen.zsh]
   - [submodules/nerd-fonts/install.sh FiraCode, Install FiraCode Nerd Fonts]
+  -
+    command: scripts/install_packages.sh
+    description: Run script installing additional packages
+    stdin: true
+    stdout: true
   - [scripts/install_packages.sh, Run script installing additional packages]
   - [busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")', Restart GNOME Shell]
   - [chsh -s $(which zsh), Making zsh the default shell]
