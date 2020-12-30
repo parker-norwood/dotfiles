@@ -10,13 +10,12 @@ apt_packages=(
   git-lfs # git Large File Support
   gnome-shell-extensions # extensions to extend functionality of GNOME Shell
   gnome-tweaks # tool to adjust advanced configuration settings for GNOME
-  ./deb/google-chrome-stable_current_amd64.deb # the web browser from Google
+  google-chrome-stable # the web browser from Google
   htop # interactive processes viewer
   imagemagick # image manipulation programs -- binaries
   kitty # fast, featureful, GPU based terminal emulator
   miktex # MiKTeX: a scalable TeX distribution
   neofetch # shows linux system information with distribution logo
-  nodejs # node.js event-based server-side javascript engine
   python3-nautilus # python binding for Nautilus components (Python 3 version)
   python3-pip # python package installer
   vim # Vi IMproved - enhanced vi editor
@@ -24,6 +23,11 @@ apt_packages=(
   zsh # shell with lots of features
   # net-tools # deprecated, use iproute2 utilities (ip/ss commands) instead
   # dnsutils # deprecated, use dig instead
+)
+
+apt_packages_remove=(
+  firefox # Safe and easy web browser from Mozilla
+  gnome-terminal # GNOME terminal emulator application
 )
 
 snaps=(
@@ -47,27 +51,20 @@ add_sources() {
   # MiKTeX
   sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys D6BC243565B2087BC3F897C9277A7293F59E4889
   echo "deb [arch=amd64] http://miktex.org/download/ubuntu focal universe" | sudo tee /etc/apt/sources.list.d/miktex.list
-}
-
-download_deb_packages() {
-  mkdir ./deb
   # Google Chrome
-  wget -O ./deb/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-}
-
-clean_up_deb_packages() {
-  rm -rf ./deb
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+  sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 }
 
 add_sources
 
-download_deb_packages
-
 sudo apt update
 
-sudo apt dist-upgrade --fix-missing --auto-remove -y
+sudo apt full-upgrade --fix-missing --auto-remove -y
 
 (( ${#apt_packages[@]} )) && sudo apt install -y ${apt_packages[@]}
+
+(( ${#apt_packages_remove[@]} )) && sudo apt purge -y --auto-remove ${apt_packages_remove[@]}
 
 (( ${#snaps[@]} )) && sudo snap install ${snaps[@]}
 
@@ -77,4 +74,4 @@ done
 
 (( ${#python3_packages[@]} )) && sudo pip3 install ${python3_packages[@]}
 
-clean_up_deb_packages
+exit 0

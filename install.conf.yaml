@@ -4,6 +4,8 @@
       create: true
       relink: true
     shell:
+      stdin: true
+      stdout: true
       stderr: true
 - clean:
     ~/:
@@ -12,31 +14,18 @@
 - create:
   - ~/.antigen
   - ~/.vim/pack/themes/start
-  - ~/.local/share/nautilus-python/extensions
 - link:
+    ~/.vimrc: .dotfiles/.vimrc
     ~/.zshrc: .dotfiles/.zshrc
     ~/.p10k.zsh: .dotfiles/.p10k.zsh
     ~/.config/kitty/kitty.conf: .dotfiles/kitty/kitty.conf
+    ~/.antigen: submodules/antigen
     ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
     ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
 - shell:
-  -
-    command: sudo cp -v .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano
-    description: Install fixed desktop-icons gnome-shell extension
-    stdin: true
-    stdout: true
-  - [cp -v .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions, Install open-terminal nautilus-python extension]
-  - [cp -v submodules/antigen/antigen.zsh ~/.antigen, Install antigen.zsh]
-  - [submodules/nerd-fonts/install.sh FiraCode, Install FiraCode Nerd Fonts]
-  -
-    command: scripts/install_packages.sh
-    description: Run script installing additional packages
-    stdin: true
-    stdout: true
-  - [busctl --user call org.gnome.Shell /org/gnome/Shell org.gnome.Shell Eval s 'Meta.restart("Restarting…")', Restart GNOME Shell]
-  -
-    command: chsh -s $(which zsh)
-    description: Making zsh the default shell
-    stdin: true
-    stdout: true
-  - [kitty --detach zsh -c "neofetch; zsh -i", Launch kitty terminal emulator with neofetch splash]
+  - [scripts/helpers.sh make_tmp_dir]
+  - [scripts/helpers.sh patch_kitty_gnome_plugins]
+  - [scripts/install_packages.sh]
+  - [scripts/helpers.sh install_fira_code_nerd_fonts]
+  - [scripts/helpers.sh change_shell]
+  - [scripts/helpers.sh clean_up_tmp_dir]

@@ -1,3 +1,0 @@
-Add kitty as alternative using update-alternatives
-Set kitty as primary terminal
-Add shell commands to update submodules
