@@ -2,16 +2,21 @@
 	path = submodules/dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+	recurse = true
 [submodule "submodules/nerd-fonts"]
 	path = submodules/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts
+	active = false
+	update = none
 [submodule "submodules/dracula/vim"]
 	path = submodules/dracula/vim
 	url = https://github.com/dracula/vim
+	recurse = true
 [submodule "submodules/dracula/kitty"]
 	path = submodules/dracula/kitty
 	url = https://github.com/dracula/kitty
+	recurse = true
 [submodule "submodules/antigen"]
 	path = submodules/antigen
 	url = https://github.com/zsh-users/antigen
-
+	recurse = true
