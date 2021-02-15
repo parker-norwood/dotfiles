@@ -19,6 +19,7 @@
     ~/.zshrc: .dotfiles/.zshrc
     ~/.p10k.zsh: .dotfiles/.p10k.zsh
     ~/.config/kitty/kitty.conf: .dotfiles/kitty/kitty.conf
+    ~/.gnupg/gpg-agent.conf: .dotfiles/.gnupg/gpg-agent.conf
     ~/.antigen: submodules/antigen
     ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
     ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
