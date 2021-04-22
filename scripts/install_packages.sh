@@ -31,10 +31,12 @@ apt_packages_remove=(
 )
 
 snaps=(
+  bpytop # A Python-based resource monitor for your terminal
   caprine # unofficial and privacy-focused facebook messenger desktop app
   discord # all-in-one voice and text chat for gamers
   docker # docker container runtime
   postman # API development environment
+  signal-desktop # Signal Private Messenger for Windows, Mac, and Linux
   spotify # music for everyone
   vlc # the ultimate media player
 )
