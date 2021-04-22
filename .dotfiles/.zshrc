@@ -25,6 +25,7 @@ export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-completions
+DISABLE_MAGIC_FUNCTIONS=true
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-history-substring-search
