@@ -23,6 +23,7 @@
     ~/.antigen: submodules/antigen
     ~/.config/kitty/dracula.conf: submodules/dracula/kitty/dracula.conf
     ~/.vim/pack/themes/start/dracula: submodules/dracula/vim
+    ~/.huskyrc: .dotfiles/.huskyrc
 - shell:
   - [scripts/helpers.sh make_tmp_dir]
   - [scripts/helpers.sh patch_kitty_gnome_plugins]
