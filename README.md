@@ -13,3 +13,11 @@ git clone https://github.com/parker-norwood/dotfiles
 cd dotfiles/
 ./install
 ```
+
+# Relink
+
+Add additional files to dotfiles, and relink.
+
+```bash
+./install --only link
+```
