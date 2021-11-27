@@ -31,3 +31,4 @@
   - [scripts/helpers.sh install_fira_code_nerd_fonts]
   - [scripts/helpers.sh change_shell]
   - [scripts/helpers.sh clean_up_tmp_dir]
+  - [scripts/helpers.sh add_user_to_docker_group]
