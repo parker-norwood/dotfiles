@@ -5,6 +5,7 @@ apt_packages=(
   curl # command line tool for transferring data with URL syntax
   dconf-editor # simple configuration storage system - graphical editor
   fzf # general-purpose command-line fuzzy finder
+  gh # GitHub’s official command line tool.
   gir1.2-gconf-2.0 # GNOME configuration database system (GObject-introspection)
   git # fast, scalable, distributed revision control system
   git-lfs # git Large File Support
@@ -16,6 +17,7 @@ apt_packages=(
   kitty # fast, featureful, GPU based terminal emulator
   miktex # MiKTeX: a scalable TeX distribution
   neofetch # shows linux system information with distribution logo
+  protonvpn # ProtonVPN metapackage
   python3-nautilus # python binding for Nautilus components (Python 3 version)
   python3-pip # python package installer
   vim # Vi IMproved - enhanced vi editor
@@ -58,6 +60,12 @@ add_sources() {
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
   # git
   sudo add-apt-repository -y ppa:git-core/ppa
+  # GitHub cli gh
+  wget -q -O - https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+  # ProtonVPN
+  wget -q -O - https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb > tmp/protonvpn.deb
+  sudo apt install -y ./tmp/protonvpn.deb # installs repo, not package
 }
 
 add_sources
