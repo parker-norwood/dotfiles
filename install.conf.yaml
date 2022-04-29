@@ -26,9 +26,9 @@
     ~/.huskyrc: .dotfiles/.huskyrc
 - shell:
   - [scripts/helpers.sh make_tmp_dir]
-  - [scripts/helpers.sh patch_kitty_gnome_plugins]
   - [scripts/install_packages.sh]
   - [scripts/helpers.sh install_fira_code_nerd_fonts]
   - [scripts/helpers.sh change_shell]
   - [scripts/helpers.sh clean_up_tmp_dir]
   - [scripts/helpers.sh add_user_to_docker_group]
+  - [scripts/helpers.sh setup_nautilus_open_any_terminal]
