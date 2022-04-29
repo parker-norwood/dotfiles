@@ -20,3 +20,7 @@
 	path = submodules/antigen
 	url = https://github.com/zsh-users/antigen
 	recurse = true
+[submodule "submodules/nautilus-open-any-terminal"]
+	path = submodules/nautilus-open-any-terminal
+	url = https://github.com/Stunkymonkey/nautilus-open-any-terminal
+	recurse = true

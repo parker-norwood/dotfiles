@@ -8,10 +8,12 @@ clean_up_tmp_dir() {
   rm -rf ./tmp
 }
 
-patch_kitty_gnome_plugins() {
-  mkdir -p ~/.local/share/nautilus-python/extensions
-  cp .dotfiles/kitty/open-terminal.py ~/.local/share/nautilus-python/extensions
-  sudo cp .dotfiles/kitty/desktopIconsUtil.js /usr/share/gnome-shell/extensions/desktop-icons@csoriano
+setup_nautilus_open_any_terminal() {
+  nautilus -q
+  glib-compile-schemas ~/.local/share/glib-2.0/schemas/
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal terminal kitty
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal keybindings '<Ctrl><Alt>t'
+  gsettings set com.github.stunkymonkey.nautilus-open-any-terminal new-tab true
 }
 
 install_fira_code_nerd_fonts() {
@@ -43,7 +45,7 @@ add_user_to_docker_group() {
 case $1 in
   make_tmp_dir) make_tmp_dir;;
   clean_up_tmp_dir) clean_up_tmp_dir;;
-  patch_kitty_gnome_plugins) patch_kitty_gnome_plugins;;
+  setup_nautilus_open_any_terminal) setup_nautilus_open_any_terminal;;
   install_fira_code_nerd_fonts) install_fira_code_nerd_fonts;;
   install_fira_code_nerd_fonts_old) install_fira_code_nerd_fonts;;
   change_shell) change_shell;;
