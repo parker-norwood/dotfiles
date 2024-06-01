@@ -5,7 +5,7 @@ make_tmp_dir() {
 }
 
 clean_up_tmp_dir() {
-  rm -rf ./tmp
+  rm -rvf ./tmp
 }
 
 setup_nautilus_open_any_terminal() {
@@ -29,7 +29,7 @@ install_fira_code_nerd_fonts_old() {
 
 change_shell() {
   chsh -s $(which zsh)
-  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which kitty) 50
+  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which kitty) 100
   sudo update-alternatives --set x-terminal-emulator $(which kitty)
   kitty -d ~ --detach zsh -c "neofetch; echo '\n***Make sure to logout to reflect changes to the default shell.***\n'; zsh -i"
 }
@@ -37,7 +37,15 @@ change_shell() {
 add_user_to_docker_group() {
   sudo groupadd docker
   sudo usermod -aG docker $USER
+  newgrp docker
   echo "Docker commands enabled without sudo. A system restart is required."
+}
+
+setup_git_with_gh() {
+  gh auth login
+  gh auth setup-git
+  # git config --global user.name
+  # git config --global user.email
 }
 
 [ -z "$1" ] && echo "USAGE" && exit
