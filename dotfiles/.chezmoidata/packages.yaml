@@ -1,0 +1,44 @@
+packages:
+  ubuntu:
+    sources:
+      - https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
+      - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    source_scripts:
+      - |
+        sudo install -dm 755 /etc/apt/keyrings
+        wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
+        echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+      - |
+        wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
+        sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
+    apt:
+      install:
+        - curl
+        - fzf
+        - git
+        - gh
+        - mise
+        - nautilus-extension-any-terminal
+        - vim
+        - zsh
+        - zsh-antidote
+      remove:
+        - nautilus-extension-gnome-terminal
+    snap:
+      install:
+        - bpytop
+        - discord
+        - docker
+        - postman
+        - signal-desktop
+        - spotify
+      classic:
+        - code
+        - chezmoi
+        - ghostty
+      remove:
+        - firefox
+    python:
+      install: []
+      remove: []
+      user: []

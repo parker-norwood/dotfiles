@@ -1,0 +1,3 @@
+theme=Dracula
+font-family=FiraCode Nerd Font
+shell-integration-features=no-cursor

@@ -1,0 +1,25 @@
+#!/bin/sh
+{{ if eq .chezmoi.osRelease.id "ubuntu" -}}
+{{ range .packages.ubuntu.sources }}
+wget {{.}}
+sudo apt install -y ./{{ regexFind "[^/]+\\.deb$" . }}
+rm ./{{ regexFind "[^/]+\\.deb$" . }}
+{{ end }}
+{{ range .packages.ubuntu.source_scripts -}}
+{{ . }}
+{{ end -}}
+
+sudo apt update
+
+sudo apt full-upgrade --fix-missing --auto-remove -y
+
+sudo apt install -y {{- range .packages.ubuntu.apt.install }} {{ . }}{{ end }}
+
+sudo apt purge -y --auto-remove {{- range .packages.ubuntu.apt.remove }} {{ . }}{{ end }}
+
+sudo snap install {{- range .packages.ubuntu.snap.install }} {{ . }}{{ end }}
+{{ range .packages.ubuntu.snap.classic }}
+sudo snap install --classic {{ . }}
+{{ end }}
+sudo snap remove {{ range .packages.ubuntu.snap.remove }}{{ . }}{{ end }}
+{{ end -}}
