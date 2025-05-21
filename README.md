@@ -1,23 +1,11 @@
-# Dotfiles
+# dotfiles
 
-A repository with my personal configuration files.
+My development dotfiles, managed with [chezmoi](https://www.chezmoi.io/).
 
-Dotfiles uses [Dotbot](https://github.com/anishathalye/dotbot) for installation.
+## Install
 
-# Install
-
-Set up dotfiles by cloning and running the install script:
-
-```bash
-git clone https://github.com/parker-norwood/dotfiles
-cd dotfiles/
-./install
-```
-
-# Relink
-
-Add additional files to dotfiles, and relink.
-
-```bash
-./install --only link
+```sh
+sudo snap install chezmoi --classic
+chezmoi init https://github.com/parker-norwood/dotfiles.git
+chezmoi apply
 ```
