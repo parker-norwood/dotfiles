@@ -5,8 +5,9 @@ change_shell() {
 }
 
 change_terminal() {
-  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which ghostty) 100
-  sudo update-alternatives --set x-terminal-emulator $(which ghostty)
+  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/bin/ghostty 100
+  sudo update-alternatives --set x-terminal-emulator /snap/bin/ghostty
+  sed -i '1ighostty_ghostty.desktop' ~/.config/ubuntu-xdg-terminals.list
 }
 
 install_firacode_nerd_font() {
