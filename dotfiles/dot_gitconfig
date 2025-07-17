@@ -1,0 +1,11 @@
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[user]
+	name = Parker Norwood
+	email = 24658209+parker-norwood@users.noreply.github.com
+[push]
+	autoSetupRemote = true

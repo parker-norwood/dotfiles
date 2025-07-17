@@ -19,7 +19,6 @@ packages:
         - gh
         - mise
         - nautilus-extension-any-terminal
-        - vim
         - zsh
         - zsh-antidote
       remove:
