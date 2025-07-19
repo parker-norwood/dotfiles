@@ -13,22 +13,23 @@ packages:
         sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
     apt:
       install:
+        - btop
         - curl
         - fzf
         - git
         - gh
         - mise
         - nautilus-extension-any-terminal
+        - neofetch
         - zsh
         - zsh-antidote
       remove:
         - nautilus-extension-gnome-terminal
     snap:
       install:
-        - bpytop
         - discord
         - docker
-        - postman
+        - insomnia
         - signal-desktop
         - spotify
       classic:
