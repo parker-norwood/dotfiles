@@ -3,28 +3,38 @@ packages:
     sources:
       - https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
       - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
     source_scripts:
+      - |
+        wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
+        sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
       - |
         sudo install -dm 755 /etc/apt/keyrings
         wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
         echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
       - |
-        wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
-        sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
+        wget -q0 - https://packages.konghq.com/public/insomnia/gpg.474B9148D779222B.key | gpg --dearmor | sudo tee /etc/apt/keyrings/trusted.gpg.d/kong-insomnia.gpg 1> /dev/null
+        echo "deb [signed-by=/usr/share/keyrings/kong-insomnia-archive-keyring.gpg] https://packages.konghq.com/public/insomnia/deb/ubuntu questing main" | sudo tee /etc/apt/sources.list.d/kong-insomnia.list
+      # - |
+      #   wget -qO /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+      #   sudo wget -P /etc/apt/sources.list.d/ https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
     apt:
       install:
+        # - brave-browser
         - btop
         - curl
         - fzf
         - git
         - gh
+        - gnome-shell-extension-manager
+        - gnome-shell-extension-user-theme
+        - gnome-weather
         - mise
         - nautilus-extension-any-terminal
         - neofetch
         - zsh
         - zsh-antidote
-      remove:
-        - nautilus-extension-gnome-terminal
+      remove: []
     snap:
       install:
         - discord
@@ -33,7 +43,6 @@ packages:
         - signal-desktop
         - spotify
       classic:
-        - code
         - chezmoi
         - ghostty
       remove:

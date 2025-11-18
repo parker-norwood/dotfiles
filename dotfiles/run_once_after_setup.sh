@@ -35,6 +35,19 @@ setup_git() {
   git config --global user.name $git_user_email
 }
 
+# TODO: Utilize once dracula-theme-snap has autoconnect greedy plug
+# https://gitlab.com/sundbp/dracula-theme-snap
+dracula_theme() {
+  wget https://github.com/dracula/gtk/archive/master.zip
+  unzip -d ~/.themes master.zip
+  mv ~/.themes/gtk-master ~/.themes/Dracula
+  rm -rf ~/.config/gtk-4.0
+  ln -s ~/.themes/Dracula/gtk-4.0/gtk.css ~/.config/gtk-4.0/gtk.css
+  ln -s ~/.themes/Dracula/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk-dark.css
+  ln -s ~/.themes/Dracula/gtk-4.0/assets ~/.config/gtk-4.0/assets
+  ln -s ~/.themes/Dracula/assets ~/.config/assets
+}
+
 dconf_load() {
   dconf load / < $CHEZMOI_SOURCE_DIR/dconf.ini
 }
