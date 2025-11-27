@@ -11,6 +11,8 @@ rm ./{{ regexFind "[^/]+\\.deb$" . }}
 
 sudo apt update
 
+sudo apt modernize-sources -y
+
 sudo apt full-upgrade --fix-missing --auto-remove -y
 
 sudo apt install -y {{- range .packages.ubuntu.apt.install }} {{ . }}{{ end }}

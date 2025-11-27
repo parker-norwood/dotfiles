@@ -5,33 +5,36 @@ packages:
       - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
     source_scripts:
-      - |
+      - | # Personal PPA
         wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
         sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
-      - |
+      - | # Mise
         sudo install -dm 755 /etc/apt/keyrings
         wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
         echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-      - |
-        wget -q0 - https://packages.konghq.com/public/insomnia/gpg.474B9148D779222B.key | gpg --dearmor | sudo tee /etc/apt/keyrings/trusted.gpg.d/kong-insomnia.gpg 1> /dev/null
-        echo "deb [signed-by=/usr/share/keyrings/kong-insomnia-archive-keyring.gpg] https://packages.konghq.com/public/insomnia/deb/ubuntu questing main" | sudo tee /etc/apt/sources.list.d/kong-insomnia.list
-      # - |
-      #   wget -qO /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-      #   sudo wget -P /etc/apt/sources.list.d/ https://brave-browser-apt-release.s3.brave.com/brave-browser.sources
+      - | # Signal Desktop
+        wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
+        cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+        wget -O signal-desktop.sources https://updates.signal.org/static/desktop/apt/signal-desktop.sources;
+        cat signal-desktop.sources | sudo tee /etc/apt/sources.list.d/signal-desktop.sources > /dev/null
+      - | # Spotify
+        curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+        echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
     apt:
       install:
-        # - brave-browser
         - btop
         - curl
+        - fastfetch
         - fzf
-        - git
         - gh
+        - git
         - gnome-shell-extension-manager
         - gnome-shell-extension-user-theme
         - gnome-weather
+        - google-chrome-stable
         - mise
-        - nautilus-extension-any-terminal
-        - neofetch
+        - signal-desktop
+        - spotify-client
         - zsh
         - zsh-antidote
       remove: []
@@ -39,9 +42,7 @@ packages:
       install:
         - discord
         - docker
-        - insomnia
-        - signal-desktop
-        - spotify
+        # - insomnia
       classic:
         - chezmoi
         - ghostty
