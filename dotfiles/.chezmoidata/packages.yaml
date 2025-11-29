@@ -1,9 +1,10 @@
 packages:
   ubuntu:
     sources:
-      - https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
-      - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+      - https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb # Proton VPN
+      - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
+      - https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 # VS Code
+      - https://repo.steampowered.com/steam/archive/stable/steam_latest.deb # Steam
     source_scripts:
       - | # Personal PPA
         wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
