@@ -31,6 +31,7 @@ packages:
         - git
         - gnome-shell-extension-manager
         - gnome-shell-extension-user-theme
+        - gnome-tweaks
         - gnome-weather
         - google-chrome-stable
         - mise
