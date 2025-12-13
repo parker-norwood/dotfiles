@@ -41,7 +41,7 @@ dracula_theme() {
   wget https://github.com/dracula/gtk/archive/master.zip
   unzip -d ~/.themes master.zip
   mv ~/.themes/gtk-master ~/.themes/Dracula
-  rm -rf ~/.config/gtk-4.0
+  rm -rf ~/.config/gtk-4.0/*
   ln -s ~/.themes/Dracula/gtk-4.0/gtk.css ~/.config/gtk-4.0/gtk.css
   ln -s ~/.themes/Dracula/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0/gtk-dark.css
   ln -s ~/.themes/Dracula/gtk-4.0/assets ~/.config/gtk-4.0/assets
