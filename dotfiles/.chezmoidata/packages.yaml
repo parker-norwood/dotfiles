@@ -21,8 +21,13 @@ packages:
       - | # Spotify
         curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
         echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+      - | # Antigravity
+        sudo mkdir -p /etc/apt/keyrings
+        curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
     apt:
       install:
+        - antigravity
         - btop
         - curl
         - fastfetch
@@ -30,14 +35,17 @@ packages:
         - gh
         - ghostty
         - git
+        - gnome-shell-extension-appindicator
         - gnome-shell-extension-manager
         - gnome-shell-extension-user-theme
         - gnome-tweaks
         - gnome-weather
         - google-chrome-stable
         - mise
+        - proton-vpn-gnome-desktop
         - signal-desktop
         - spotify-client
+        - steam-launcher
         - zsh
         - zsh-antidote
       remove: []
