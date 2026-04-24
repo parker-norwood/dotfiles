@@ -28,6 +28,7 @@ packages:
         - fastfetch
         - fzf
         - gh
+        - ghostty
         - git
         - gnome-shell-extension-manager
         - gnome-shell-extension-user-theme
@@ -47,7 +48,6 @@ packages:
         # - insomnia
       classic:
         - chezmoi
-        - ghostty
       remove:
         - firefox
     python:

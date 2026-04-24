@@ -5,9 +5,10 @@ change_shell() {
 }
 
 change_terminal() {
-  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /snap/bin/ghostty 100
-  sudo update-alternatives --set x-terminal-emulator /snap/bin/ghostty
-  sed -i '1ighostty_ghostty.desktop' ~/.config/ubuntu-xdg-terminals.list
+  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 100
+  sudo update-alternatives --set x-terminal-emulator /usr/bin/ghostty
+  echo "ghostty_ghostty.desktop" > ~/.config/ubuntu-xdg-terminals.list
+  gsettings set org.gnome.desktop.default-applications.terminal exec '/usr/bin/ghostty'
 }
 
 install_firacode_nerd_font() {
@@ -52,9 +53,14 @@ dconf_load() {
   dconf load / < $CHEZMOI_SOURCE_DIR/dconf.ini
 }
 
+fix_spotify() {
+  sudo sed -i '/^Exec=/c\Exec=spotify %U --ozone-platform=x11' /usr/share/applications/spotify.desktop
+}
+
 change_shell
 change_terminal
 install_firacode_nerd_font
 add_user_to_docker_group
 setup_git
 dconf_load
+fix_spotify
