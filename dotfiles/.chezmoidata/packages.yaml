@@ -1,33 +1,16 @@
 packages:
   ubuntu:
-    sources:
-      - https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb # Proton VPN
-      - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Google Chrome
-      # - https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 # VS Code
-      - https://repo.steampowered.com/steam/archive/stable/steam_latest.deb # Steam
+    extrepo:
+      - google_chrome
+      - mise
+      - protonvpn
+      - signal
+      - spotify
+      - steam
     source_scripts:
-      - | # Personal PPA
-        wget -qO - https://ppa.parker.dev/ppa.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/ppa.gpg 1> /dev/null
-        sudo wget -P /etc/apt/sources.list.d/ https://ppa.parker.dev/ppa.list
-      - | # Mise
-        sudo install -dm 755 /etc/apt/keyrings
-        wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
-        echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
-      - | # Signal Desktop
-        wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg;
-        cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-        wget -O signal-desktop.sources https://updates.signal.org/static/desktop/apt/signal-desktop.sources;
-        cat signal-desktop.sources | sudo tee /etc/apt/sources.list.d/signal-desktop.sources > /dev/null
-      - | # Spotify
-        curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-        echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-      - | # Antigravity
-        sudo mkdir -p /etc/apt/keyrings
-        curl -fsSL https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/antigravity-repo-key.gpg
-        echo "deb [signed-by=/etc/apt/keyrings/antigravity-repo-key.gpg] https://us-central1-apt.pkg.dev/projects/antigravity-auto-updater-dev/ antigravity-debian main" | sudo tee /etc/apt/sources.list.d/antigravity.list > /dev/null
+      - sudo wget -O /etc/apt/sources.list.d/ppa.sources https://ppa.parker.dev/ppa.sources
     apt:
       install:
-        - antigravity
         - btop
         - curl
         - fastfetch
@@ -53,7 +36,6 @@ packages:
       install:
         - discord
         - docker
-        # - insomnia
       classic:
         - chezmoi
       remove:

@@ -1,5 +1,7 @@
 [tools]
+agy = "latest"
 node = "latest"
+ollama = "latest"
 uv = "latest"
 
 [settings]

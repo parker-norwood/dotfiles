@@ -1,10 +1,17 @@
 #!/bin/sh
 {{ if eq .chezmoi.osRelease.id "ubuntu" -}}
-{{ range .packages.ubuntu.sources }}
-wget --content-disposition "{{.}}"
-sudo apt install -y ./{{ regexFind "[^/]+\\.deb$" . }}
-rm ./{{ regexFind "[^/]+\\.deb$" . }}
-{{ end }}
+
+sudo apt update
+sudo apt install -y extrepo
+
+# Enable non-free and contrib policies for apps like Chrome, Steam, and Spotify
+sudo sed -i 's/# - non-free/- non-free/g' /etc/extrepo/config.yaml
+sudo sed -i 's/# - contrib/- contrib/g' /etc/extrepo/config.yaml
+
+{{ range .packages.ubuntu.extrepo -}}
+sudo extrepo enable {{ . }}
+{{ end -}}
+
 {{ range .packages.ubuntu.source_scripts -}}
 {{ . }}
 {{ end -}}
@@ -24,4 +31,6 @@ sudo snap install {{- range .packages.ubuntu.snap.install }} {{ . }}{{ end }}
 sudo snap install --classic {{ . }}
 {{ end }}
 sudo snap remove {{ range .packages.ubuntu.snap.remove }}{{ . }}{{ end }}
+
+mise install -y
 {{ end -}}

@@ -30,10 +30,6 @@ add_user_to_docker_group() {
 setup_git() {
   gh auth login
   gh auth setup-git
-  read -p "git config --global user.name " git_user_name
-  git config --global user.name $git_user_name
-  read -p "git config --global user.email " git_user_email
-  git config --global user.name $git_user_email
 }
 
 # TODO: Utilize once dracula-theme-snap has autoconnect greedy plug
