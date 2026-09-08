@@ -20,6 +20,7 @@ antidote load ${ZDOTDIR:-~}/.zsh_plugins.conf
 alias {ll,l}="ls -halF"
 
 upd8() {
+  sudo extrepo update
   sudo apt update
   sudo apt full-upgrade --fix-missing --auto-remove -y
   sudo snap refresh

@@ -3,7 +3,6 @@ packages:
     extrepo:
       - google_chrome
       - mise
-      - protonvpn
       - signal
       - spotify
       - steam
@@ -36,6 +35,7 @@ packages:
       install:
         - discord
         - docker
+        - proton-vpn
       classic:
         - chezmoi
       remove:

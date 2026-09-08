@@ -58,5 +58,3 @@ change_terminal
 install_firacode_nerd_font
 add_user_to_docker_group
 setup_git
-dconf_load
-fix_spotify
